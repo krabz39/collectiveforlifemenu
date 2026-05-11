@@ -1,38 +1,157 @@
+
+/* ========================================= */
+/* GLOBAL SMOOTHNESS */
+/* ========================================= */
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    overflow-x:hidden;
+}
+
+/* ========================================= */
+/* FLOATING CUP */
+/* ========================================= */
+
 .cup{
     animation:float 5s ease-in-out infinite;
+    will-change:transform;
 }
 
-.globe{
-    animation:globeFloat 7s ease-in-out infinite;
-}
+/* ========================================= */
+/* STEAM EFFECT */
+/* ========================================= */
 
 .steam{
-    animation:steam 6s ease infinite;
+    animation:steam 6s ease-in-out infinite;
+    will-change:transform, opacity;
 }
 
+/* ========================================= */
+/* GLOBE CONTAINER */
+/* ========================================= */
+
+#globeViz{
+    animation:globeAppear 1.2s ease;
+}
+
+/* ========================================= */
+/* MENU CARD ANIMATIONS */
+/* ========================================= */
+
 .menu-card{
-    transition:0.4s;
+    transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    background 0.4s ease;
+    will-change:transform;
 }
 
 .menu-card:hover{
     transform:translateY(-10px);
+    box-shadow:0 20px 60px rgba(37,99,235,0.12);
 }
 
+/* ========================================= */
+/* STORY CARD ANIMATIONS */
+/* ========================================= */
+
 .story-card{
-    transition:0.4s;
+    transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+    will-change:transform;
 }
 
 .story-card:hover{
     transform:translateY(-10px);
+    box-shadow:0 20px 60px rgba(0,0,0,0.08);
 }
 
-.button{
-    transition:0.3s;
+/* ========================================= */
+/* BUTTONS */
+/* ========================================= */
+
+.button,
+.menu-tabs button,
+.social,
+.nav-links a{
+    transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
 .button:hover{
     transform:translateY(-4px);
 }
+
+.menu-tabs button:hover{
+    transform:translateY(-3px);
+}
+
+.social:hover{
+    transform:translateY(-4px) scale(1.05);
+}
+
+.nav-links a:hover{
+    opacity:0.7;
+}
+
+/* ========================================= */
+/* HERO TEXT */
+/* ========================================= */
+
+.hero-text h1,
+.hero-text h3,
+.hero-text p,
+.scroll-text{
+    animation:fadeUp 1s ease;
+}
+
+/* ========================================= */
+/* SECTION REVEALS */
+/* ========================================= */
+
+.origins-wrapper,
+.menu-section,
+.flavor-box,
+.story-card,
+.timeline-item{
+    animation:fadeUp 1s ease;
+}
+
+/* ========================================= */
+/* TIMELINE */
+/* ========================================= */
+
+.timeline-circle{
+    transition:
+    transform 0.4s ease,
+    background 0.4s ease,
+    color 0.4s ease;
+}
+
+.timeline-item:hover .timeline-circle{
+    transform:scale(1.08);
+    background:var(--blue);
+    color:white;
+}
+
+/* ========================================= */
+/* GLOBE HOVER FEEL */
+/* ========================================= */
+
+#globeViz canvas{
+    transition:transform 0.5s ease;
+}
+
+/* ========================================= */
+/* FLOAT ANIMATION */
+/* ========================================= */
 
 @keyframes float{
 
@@ -50,37 +169,118 @@
 
 }
 
-@keyframes globeFloat{
-
-0%{
-    transform:translateY(0px) rotate(0deg);
-}
-
-50%{
-    transform:translateY(-15px) rotate(4deg);
-}
-
-100%{
-    transform:translateY(0px) rotate(0deg);
-}
-
-}
+/* ========================================= */
+/* STEAM ANIMATION */
+/* ========================================= */
 
 @keyframes steam{
 
 0%{
-    opacity:0.2;
-    transform:translateY(0px);
+    opacity:0.15;
+    transform:translate(-50%,0px);
 }
 
 50%{
-    opacity:0.5;
-    transform:translateY(-10px);
+    opacity:0.55;
+    transform:translate(-50%,-12px);
 }
 
 100%{
-    opacity:0.2;
-    transform:translateY(0px);
+    opacity:0.15;
+    transform:translate(-50%,0px);
+}
+
+}
+
+/* ========================================= */
+/* FADE UP */
+/* ========================================= */
+
+@keyframes fadeUp{
+
+from{
+    opacity:0;
+    transform:translateY(40px);
+}
+
+to{
+    opacity:1;
+    transform:translateY(0);
+}
+
+}
+
+/* ========================================= */
+/* GLOBE APPEAR */
+/* ========================================= */
+
+@keyframes globeAppear{
+
+from{
+    opacity:0;
+    transform:scale(0.9);
+}
+
+to{
+    opacity:1;
+    transform:scale(1);
+}
+
+}
+
+/* ========================================= */
+/* SOFT PULSE */
+/* ========================================= */
+
+@keyframes pulse{
+
+0%{
+    transform:scale(1);
+}
+
+50%{
+    transform:scale(1.03);
+}
+
+100%{
+    transform:scale(1);
+}
+
+}
+
+/* ========================================= */
+/* MOBILE PERFORMANCE */
+/* ========================================= */
+
+@media(max-width:768px){
+
+.cup{
+    animation-duration:6s;
+}
+
+.steam{
+    animation-duration:7s;
+}
+
+.menu-card:hover,
+.story-card:hover,
+.button:hover,
+.social:hover{
+    transform:none;
+}
+
+}
+
+/* ========================================= */
+/* REDUCED MOTION SUPPORT */
+/* ========================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+*{
+    animation:none !important;
+    transition:none !important;
+    scroll-behavior:auto !important;
 }
 
 }
